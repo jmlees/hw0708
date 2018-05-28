@@ -22,8 +22,6 @@ class PostsController < ApplicationController
     # @post.save
     
     Post.create(post_params)
-    # @post.user_name = current_user.email
-    # @post.save
     
     redirect_to posts_path
   end
