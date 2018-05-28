@@ -1,0 +1,25 @@
+<h1>이곳은 쇼 페이지입니다</h1>
+
+제목: <%= @post.title %><br>
+내용: <%= @post.content %><br>
+
+<!--<a href="/">뒤로 돌아가기</a>-->
+<%= link_to "뒤로 돌아가기", posts_path %>
+
+<!--<form action="/posts/create_comment/%= @post.id%>" method="POST">-->
+<!--    <textarea type="string" name="comment_content"></textarea>-->
+<!--    <button type="submit">댓글 입력</button>-->
+<!--</form>-->
+
+<!--% @post.comments.each do |c| %>-->
+<!--    %= c.content %><br>-->
+<!--%end%>-->
+
+<%= form_for([@post, @post.comments.new]) do |cc| %>
+    <%= cc.text_area :content%>
+    <%= cc.submit%>
+<%end%>
+
+<% @comments.each do |ccc| %>
+    <%= ccc.content %><br>
+<%end%>

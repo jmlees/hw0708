@@ -1,0 +1,23 @@
+<h1>인덱스 페이지입니다</h1>
+
+<p>
+    <!--<a href="/posts/new">새로운 글로 갑시다</a>-->
+    <%= link_to "새로운 글로 갑시다", new_post_path %>
+</p>
+
+<!--글 제목이 쫘르륵 뜹니다-->
+
+<!--% @posts.each do |p|%>-->
+<!--    <a href="/posts/show/%= p.id%>">%= p.title%></a>&nbsp;-->
+<!--    <a href="/posts/edit/%=p.id%>">수정</a>-->
+<!--    <a href="/posts/destroy/%=p.id%>">삭제</a><br>-->
+<!--%end%>-->
+
+<% @posts.each do |p|%>
+    <!--<a href="/posts/show/<%= p.id%>"><%= p.title%></a>&nbsp;-->
+    <%= link_to "#{p.title}", post_path(p) %>&nbsp;
+    <!--<a href="/posts/edit/<%=p.id%>">수정</a>-->
+    <%= link_to "수정", edit_post_path(p) %>
+    <!--<a href="/posts/destroy/<%=p.id%>">삭제</a><br>-->
+    <%= link_to "삭제", post_path(p), method: :DELETE %><br>
+<%end%>
