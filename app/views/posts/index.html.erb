@@ -1,23 +1,48 @@
-<h1>인덱스 페이지입니다</h1>
-
 <p>
-    <!--<a href="/posts/new">새로운 글로 갑시다</a>-->
-    <%= link_to "새로운 글로 갑시다", new_post_path %>
 </p>
+<center>
+    <% if user_signed_in? %>
+        <%= current_user.email %>&nbsp;
+        <%= link_to "OUT", destroy_user_session_path, method: :DELETE, class: "btn btn-primary btn-xs"%>
+    <% else %>
+        <%= link_to "IN", new_user_session_path, method: :GET, class: "btn btn-primary btn-xs"%>&nbsp;
+        <%= link_to "Join", new_user_registration_path, method: :GET, class: "btn btn-primary btn-xs"%>
+    <% end%>
+</center>
+<h1>
+    인덱스 페이지입니다
+</h1>
+</p>
+<p>
+</p>
+<center>
+    <table class="table table-bordered">
+        <tr>
+            <th width="15%">글 번호</th>
+            <th width="40%">제목</th>
+            <th width="25%">작성자</th>
+            <th width="20%"></th>
+        </tr>
+        <% @posts.each do |p| %>
+        <tr>
+            <td><center><%= p.id %></center></td>
+            <td><%= link_to "#{p.title}", post_path(p), method: "get"%></td>
+            <td><center><%= p.user_name %></center></td>
+            <td><center>
+            <%= link_to "수정", edit_post_path(p), class: "btn btn-default"%>&nbsp;
+            <%= link_to "삭제", post_path(p), method: "delete", class: "btn btn-default"%></center></td>
+        </tr>
+        <% end %>
+    </table>
+    <%= link_to "새글쓰기", new_post_path, class: "btn btn-default", role: "button"%>
+</center>
 
-<!--글 제목이 쫘르륵 뜹니다-->
+<style>
+    th{
+        text-align: center;
+    }
 
-<!--% @posts.each do |p|%>-->
-<!--    <a href="/posts/show/%= p.id%>">%= p.title%></a>&nbsp;-->
-<!--    <a href="/posts/edit/%=p.id%>">수정</a>-->
-<!--    <a href="/posts/destroy/%=p.id%>">삭제</a><br>-->
-<!--%end%>-->
-
-<% @posts.each do |p|%>
-    <!--<a href="/posts/show/<%= p.id%>"><%= p.title%></a>&nbsp;-->
-    <%= link_to "#{p.title}", post_path(p) %>&nbsp;
-    <!--<a href="/posts/edit/<%=p.id%>">수정</a>-->
-    <%= link_to "수정", edit_post_path(p) %>
-    <!--<a href="/posts/destroy/<%=p.id%>">삭제</a><br>-->
-    <%= link_to "삭제", post_path(p), method: :DELETE %><br>
-<%end%>
+    .table{
+        width: 70%;
+}
+</style>

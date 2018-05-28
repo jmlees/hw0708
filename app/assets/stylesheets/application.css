@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+th{
+    text-align: center;
+}
+
+.table{
+    width: 70%;
+}
+
+.i_style{
+    width: 70%;
+}
+
+.i_style2{
+    width: 20%;
+}
+
+.left_align{
+    text-align: left;
+}
+
+.right_align{
+    text-align: right;
+}
+
+.center_align{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+.cc_style{
+    width: 35%;
+}
