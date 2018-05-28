@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :find_post, except: [:index, :new, :create]
   
   def index
@@ -21,6 +22,8 @@ class PostsController < ApplicationController
     # @post.save
     
     Post.create(post_params)
+    # @post.user_name = current_user.email
+    # @post.save
     
     redirect_to posts_path
   end
